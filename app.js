@@ -14,7 +14,7 @@ const app = express();
 
 // Database
 mongoose.set('strictQuery',false)
-mongoose.connect('mongodb+srv://vedoomz:7SoNX5aEQYxBn53a@cluster0.vqcsdra.mongodb.net/30Days',{useNewUrlParser:true,useUnifiedTopology:true}, function(err){
+mongoose.connect('mongodb+srv://vedoomz:ryuki405@cluster0.vqcsdra.mongodb.net/30Days',{useNewUrlParser:true,useUnifiedTopology:true}, function(err){
   if(err){
     console.log(err);
   } else {
