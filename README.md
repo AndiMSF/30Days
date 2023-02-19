@@ -1,3 +1,3 @@
 ��#� �3�0�D�a�y�s�
 �
-� https://vivacious-lion-woolens.cyclic.app/
+� https://good-blue-caridea-ring.cyclic.app/
