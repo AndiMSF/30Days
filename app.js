@@ -150,7 +150,7 @@ app.get('/journal', function(req,res){
         })
       })
     }  else {
-      res.redirect('/login')
+      res.render('login')
     }
   } catch (err){
   console.log(err);
