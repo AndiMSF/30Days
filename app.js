@@ -162,6 +162,9 @@ app.get('/journal', function(req,res){
 // userhome route
 app.get('/userhome',function(req,res){
   User.findById({"_id":req.user.id}, function(err, user){
+    if(err){
+      console.log(err);
+    }
     if(req.isAuthenticated()){
       console.log("User sekarang : "+ user);
       res.render("userhome", {});
