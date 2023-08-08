@@ -33,13 +33,20 @@ app.use(passport.session())
 
 // Database
 mongoose.set('strictQuery',false)
-mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@cluster0.vqcsdra.mongodb.net/30Days',{useNewUrlParser:true,useUnifiedTopology:true}, function(err){
-  if(err){
-    console.log(err);
-  } else {
-    console.log("Database terhubung");
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@cluster0.vqcsdra.mongodb.net/30Days',{useNewUrlParser:true,useUnifiedTopology:true}, function(err){
+      if(err){
+        console.log(err);
+      } else {
+        console.log("Database terhubung");
+      }
+    })
+  }catch (error){
+    console.log(error);
   }
-})
+}
+
 
 // Buat schema dan collectionnya
 // const postSchema = new mongoose.Schema({
@@ -140,6 +147,7 @@ app.get('/journal',async function(req,res){
         console.log(err);
       }
       const userPosts = user.posts;
+      console.log(userPosts);
       res.render("journal", {
         posts: userPosts
       })
@@ -257,6 +265,8 @@ app.post('/delete',  function(req,res){
 //   User.find({"_id":req.user.id},{$set:{"posts.title" : req.body.}})
 // })
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
+connectDB().then(() => {
+  app.listen(3000, function() {
+    console.log("Server started on port 3000");
+  });
+})
