@@ -35,13 +35,8 @@ app.use(passport.session())
 mongoose.set('strictQuery',false)
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@cluster0.vqcsdra.mongodb.net/30Days',{useNewUrlParser:true,useUnifiedTopology:true}, function(err){
-      if(err){
-        console.log(err);
-      } else {
-        console.log("Database terhubung");
-      }
-    })
+    const conn = await mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@cluster0.vqcsdra.mongodb.net/30Days',{useNewUrlParser:true,useUnifiedTopology:true})
+      console.log("MongoDB Connected: "+conn.connection.host)
   }catch (error){
     console.log(error);
   }
