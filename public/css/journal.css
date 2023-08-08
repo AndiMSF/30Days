@@ -28,11 +28,16 @@ h1,h2,h3,h4,h5,h6{
 .tidakberwarna{
     background-color: #fff;
     margin-bottom:0;
+    
 }
 .tidakberwarna.post{
     background-color: #fff;
   
     text-align: left;
+}
+
+section.post {
+    height: 100vh;
 }
 
 /* Title  */
@@ -54,6 +59,20 @@ h1,h2,h3,h4,h5,h6{
     text-align: left;
 }
 
+.journal {
+    text-decoration: underline;
+    display: block;
+    width: 100%;
+    font-size: 3rem;
+}
+
+form h1 {
+    font-size: 1.5rem;
+}
+
+form {
+    padding-top: 3rem;
+}
 /* Navigation Bar */
 
 .navbar{
@@ -112,7 +131,7 @@ h1,h2,h3,h4,h5,h6{
 
 
 .compose:hover{
-    color:#44ff34; 
+    color:#ffffff; 
     text-decoration:none; 
     cursor:pointer; 
 }

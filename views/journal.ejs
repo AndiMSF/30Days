@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>ND Tech</title>
-  
+  <link rel="shortcut icon" href="http://the-irf.com/favicon.ico" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +50,8 @@
 </div>
   </section>
 
+  
+
 
   
   <!-- Features -->
@@ -59,14 +61,13 @@
    <div class ="container-fluid layerPost">
     <div class="row">
       <div class ="feature-box col-md-8 col-lg-12">
-
-        <button type="button" class="btn btn-dark btn-lg download-button " >  <a class ="compose" >Hit <i class="fa fa-square-o" aria-hidden="true"></i> To Remove An Item</a></button>
+        <h1 class="journal">Journal</h1>
   <%  posts.forEach(function(post){ %>
 
     <form action="/delete" method="post">
    
 
-        <input type="checkbox" name="checkbox" value="<%= post._id %>" onChange="this.form.submit()">
+        <input type="checkbox" name="checkbox" value="<%= post._id %>" onChange="this.form.submit()"> Remove
 
     <h1><%=post.title%></h1>
     
@@ -89,13 +90,21 @@
   </section>
 
 
-  
-
-
-
-
   <!-- Footer -->
 
+  <footer class="tidakberwarna" id="footer">
+    <div class="container-fluid">
+    <div class="footer-icon">
+      <a href="mailto:andimuhammadsatriafadhil77@gmail.com"><i class="fa-icon fa-solid fa-envelope"></i></a>
+    <a href="https://www.linkedin.com/in/andi-muhammad-satria-fadhil-5a0235238/"><i class="fa-icon fa-brands fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/andi_m_s_fadhil/"><i class="fa-icon fa-brands fa-instagram"></i></a>
+  </div>
+
+
+    <p>© Copyright Andi Muhammad S F</p>
+
+    </div>
+  </footer>
  
 
 
