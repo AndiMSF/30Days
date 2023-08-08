@@ -134,22 +134,27 @@ app.post('/register',function(req,res){
 // Journal Route
 app.get('/journal',async function(req,res){
 
-  if(req.isAuthenticated()) {
-    const userId = req.user.id; // Assuming the authenticated user ID is available in req.user._id
-    User.findById(userId, (err,user) => {
-      if(err)
-      {
-        console.log(err);
-      }
-      const userPosts = user.posts;
-      console.log(userPosts);
-      res.render("journal", {
-        posts: userPosts
+  try {
+    if(req.isAuthenticated()) {
+      const userId = req.user.id; // Assuming the authenticated user ID is available in req.user._id
+      await User.findById(userId, (err,user) => {
+        if(err)
+        {
+          console.log(err);
+        }
+        const userPosts = user.posts;
+        console.log(userPosts);
+        res.render("journal", {
+          posts: userPosts
+        })
       })
-    })
-  }  else {
-    res.redirect('/login')
+    }  else {
+      res.redirect('/login')
+    }
+  } catch (err){
+  console.log(err);
   }
+  
  
 })
 
