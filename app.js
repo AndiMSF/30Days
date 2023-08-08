@@ -22,7 +22,7 @@ dotenv.config()
 
 // Session 1
 app.use(session({
-  secret: "Our little secret.",
+  secret: process.env.CLIENT_SECRET,
   resave: false,
   saveUninitialized: false
 }))
