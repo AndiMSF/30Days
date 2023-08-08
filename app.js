@@ -161,9 +161,15 @@ app.get('/journal', function(req,res){
 
 // userhome route
 app.get('/userhome',function(req,res){
-  User.find({}, function(err, posts){
-    console.log(posts);
-    res.render("userhome", {});
+  User.findById({"_id":req.user.id}, function(err, user){
+    if(req.isAuthenticated()){
+      console.log("User sekarang : "+ user);
+      res.render("userhome", {});
+    }
+    else {
+      res.redirect('/login')
+    }
+    
   });
 })
 
