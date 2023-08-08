@@ -93,7 +93,7 @@ app.post('/login', function(req,res){
       console.log(err)
     } else {
       passport.authenticate('local')(req,res,function(){
-        res.redirect('/home')
+        res.redirect('/userhome')
       })
     }
   })
@@ -160,10 +160,10 @@ app.get('/journal', function(req,res){
 })
 
 // userhome route
-app.get('/home',function(req,res){
+app.get('/userhome',function(req,res){
   User.find({}, function(err, posts){
     console.log(posts);
-    res.render("userHome", {});
+    res.render("userhome", {});
   });
 })
 
