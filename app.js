@@ -132,51 +132,72 @@ app.post('/register',function(req,res){
 })
 
 // Journal Route
-app.get('/journal', function(req,res){
-
+app.get('/journal', function(req, res) {
   try {
-    if(req.isAuthenticated()) {
-      const userId = req.user.id; // Assuming the authenticated user ID is available in req.user._id
-       User.findById(userId, (err,user) => {
-        console.log("User = "+user);
-        if(err)
-        {
-          console.log(err);
-        }
-        const userPosts = user.posts;
-        console.log(userPosts);
-        res.render("journal", {
-          posts: userPosts
-        })
-      })
-    }  else {
-      res.render('login')
-    }
-  } catch (err){
-  console.log(err);
+      if (req.isAuthenticated()) {
+          const userId = req.user.id;
+
+          // Use findById to find the user by ID
+          User.findById(userId, (err, user) => {
+              if (err) {
+                  console.log(err);
+                  res.redirect('/login'); // Redirect on error
+              } else {
+                  const userPosts = user.posts || []; // Make sure user.posts is an array
+                  console.log(userPosts);
+                  res.render("journal", {
+                      posts: userPosts
+                  });
+              }
+          });
+      } else {
+          res.redirect('/login');
+      }
+  } catch (err) {
+      console.log(err);
+      res.redirect('/login'); // Redirect on error
   }
-  
- 
-})
+});
+// Journal Route
+app.get('/journal', function(req, res) {
+  try {
+      if (req.isAuthenticated()) {
+          const userId = req.user.id;
+
+          // Use findById to find the user by ID
+          User.findById(userId, (err, user) => {
+              if (err) {
+                  console.log(err);
+                  res.redirect('/login'); // Redirect on error
+              } else {
+                  const userPosts = user.posts || []; // Make sure user.posts is an array
+                  console.log(userPosts);
+                  res.render("journal", {
+                      posts: userPosts
+                  });
+              }
+          });
+      } else {
+          res.redirect('/login');
+      }
+  } catch (err) {
+      console.log(err);
+      res.redirect('/login'); // Redirect on error
+  }
+});
+
 
 // userhome route
-app.get('/userhome',function(req,res){
-  if(req.isAuthenticated()){
-    User.findById({"_id":req.user.id}, function(err, user){
-      if(err){
-        console.log(err);
-      }
-      console.log("User sekarang : "+ user);
+app.get('/userhome', function(req, res) {
+  if (req.isAuthenticated()) {
+      // No need to search for user again, as it's already available in req.user
+      console.log("User sekarang: " + req.user);
       res.render("userhome", {});
-      
-    });
- 
+  } else {
+      res.redirect('/login');
   }
-  else {
-    res.redirect('/login')
-  }
+});
 
-})
 
 // home route
 app.get("/", function(req, res){
