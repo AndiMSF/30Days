@@ -161,19 +161,21 @@ app.get('/journal', function(req,res){
 
 // userhome route
 app.get('/userhome',function(req,res){
-  User.findById({"_id":req.user.id}, function(err, user){
-    if(err){
-      console.log(err);
-    }
-    if(req.isAuthenticated()){
+  if(req.isAuthenticated()){
+    User.findById({"_id":req.user.id}, function(err, user){
+      if(err){
+        console.log(err);
+      }
       console.log("User sekarang : "+ user);
       res.render("userhome", {});
-    }
-    else {
-      res.redirect('/login')
-    }
-    
-  });
+      
+    });
+ 
+  }
+  else {
+    res.redirect('/login')
+  }
+
 })
 
 // home route
