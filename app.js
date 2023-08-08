@@ -138,6 +138,7 @@ app.get('/journal',async function(req,res){
     if(req.isAuthenticated()) {
       const userId = req.user.id; // Assuming the authenticated user ID is available in req.user._id
       await User.findById(userId, (err,user) => {
+        console.log("User = "+user);
         if(err)
         {
           console.log(err);
@@ -160,7 +161,9 @@ app.get('/journal',async function(req,res){
 
 // userhome route
 app.get('/home',function(req,res){
-  res.render('userhome')
+  User.find({}, function(err, posts){
+    res.render("userHome", {});
+  });
 })
 
 // home route
