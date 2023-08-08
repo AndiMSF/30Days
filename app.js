@@ -132,12 +132,12 @@ app.post('/register',function(req,res){
 })
 
 // Journal Route
-app.get('/journal',async function(req,res){
+app.get('/journal', function(req,res){
 
   try {
     if(req.isAuthenticated()) {
       const userId = req.user.id; // Assuming the authenticated user ID is available in req.user._id
-      await User.findById(userId, (err,user) => {
+       User.findById(userId, (err,user) => {
         console.log("User = "+user);
         if(err)
         {
@@ -162,6 +162,7 @@ app.get('/journal',async function(req,res){
 // userhome route
 app.get('/home',function(req,res){
   User.find({}, function(err, posts){
+    console.log(posts);
     res.render("userHome", {});
   });
 })
